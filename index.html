@@ -154,78 +154,37 @@
                 align-items: center;
             }
         }
-/* クルーセルを削除し、新しい静止画用のスタイルを追加 */
+/* 画像セクション */
 .hero-image {
+    position: relative;
     width: 100%;
-    max-height: 75vh; /* PCで画面の縦3/4を覆う */
+    height: 75vh; /* パソコン画面の縦3/4 */
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    margin-top: 90px; /* ヘッダーの高さを考慮 */
 }
 
 .hero-image img {
-    width: 100%;
-    height: auto;
-    max-height: 100%;
-    object-fit: cover;
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain; /* 画像全体を表示 */
 }
 
-/* 小さいデバイス向けの調整 */
+/* スマホ・タブレット用の調整 */
+@media (max-width: 1024px) {
+    .hero-image {
+        height: 60vh; /* タブレットでは少し縮小 */
+    }
+}
+
 @media (max-width: 768px) {
     .hero-image {
-        max-height: 50vh; /* タブレットでは縦1/2程度 */
+        height: 50vh; /* スマホではさらに縮小 */
     }
 }
 
-@media (max-width: 480px) {
-    .hero-image {
-        max-height: 40vh; /* スマートフォンでは縦2/5程度 */
-    }
-}
-
-        /* クルーセル */
-        .carousel {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            margin-top: 90px; /* ヘッダーの高さを避けるために余白を追加 */
-        }
-
-        .carousel-images {
-            display: flex;
-            transition: transform 1s ease;
-        }
-
-        .carousel-images a {
-            flex: 0 0 100%; /* 1枚ずつ表示 */
-        }
-
-        .carousel-images img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-
-        .carousel button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        .carousel button.prev {
-            left: 10px;
-        }
-
-        .carousel button.next {
-            right: 10px;
-        }
 
         /* 本文 */
         main {
