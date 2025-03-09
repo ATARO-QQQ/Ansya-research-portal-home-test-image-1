@@ -569,21 +569,26 @@
     const pageViews = document.getElementById('page-views');
     pageViews.textContent = pageViewCount;
 
-    // 時間の更新
-    const currentTimeElem = document.getElementById('current-time');
-    setInterval(() => {
-        const currentDate = new Date();
-        currentTimeElem.textContent = currentDate.toLocaleTimeString();
-    }, 1000);
+       // フッターの時刻表示
+    function updateClock() {
+        const now = new Date();
+        const options = { timeZone: 'Asia/Tokyo', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        const timeString = new Intl.DateTimeFormat('ja-JP', options).format(now);
+        document.getElementById('current-time').textContent = timeString;
+    }
 
-    // メニュートグル
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('header nav');
+    setInterval(updateClock, 1000);
+    window.onload = updateClock;
 
-    menuToggle.addEventListener('click', () => {
-        nav.classList.toggle('active');
+    // メニュートグルの動作修正
+    document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const nav = document.querySelector("header nav");
+
+        menuToggle.addEventListener("click", function () {
+            nav.classList.toggle("active");
+        });
     });
-
     // クルーセル操作
     const prevButton = document.querySelector('.prev');
     const nextButton = document.querySelector('.next');
